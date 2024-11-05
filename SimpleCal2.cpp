@@ -12,27 +12,20 @@ public:
         value2 = y;
     }
 
-    void sum()
-    {
-        cout << "The value of " << value1 << " + " << value2 << " is " << value1 + value2 << endl;
-    }
-    void subtract()
-    {
-        cout << "The value of " << value1 << " - " << value2 << " is " << value1 - value2 << endl;
-    }
-    void multiply()
-    {
-        cout << "The value of " << value1 << " * " << value2 << " is " << value1 * value2 << endl;
-    }
-    void divide()
-    {
-        if (value2!=0)
-        {
-            cout << "The value of " << value1 << " / " << value2 << " is " << value1 / value2 << endl;
-        }
-        else
-        {
-            cout<<"Error: Division by zero is undefined."<<endl;
+    int calculate(char oper) const {
+        switch (oper) {
+        case '+': return value1 + value2;
+        case '-': return value1 - value2;
+        case '*': return value1 * value2;
+        case '/':
+            if (value2 != 0) return value1 / value2;
+            else {
+                cout << "Error: Division by zero is undefined." << endl;
+                return 0;  // Return zero or handle error as needed
+            }
+        default:
+            cout << "Error: Operator not recognized." << endl;
+            return 0;
         }
     }
 };
@@ -41,7 +34,7 @@ public:
 void menu()
 {
     SimpleCal cal;
-    string oper;
+    char oper;
     int a, b;
     cout << "Enter value of a and b: " << endl;
     cin >> a >> b;
@@ -50,26 +43,11 @@ void menu()
     cin >> oper;
     cout << "You selected " << oper << endl;
     cal.setVal(a, b);
+    int result = cal.calculate(oper);
 
-    if (oper == "+")
+    if (oper == '+' || oper == '-' || oper == '*' || (oper == '/' && b != 0))
     {
-        cal.sum();
-    }
-    else if (oper == "-")
-    {
-        cal.subtract();
-    }
-    else if (oper == "*")
-    {
-        cal.multiply();
-    }
-    else if (oper == "/")
-    {
-        cal.divide();
-    }
-    else
-    {
-        cout << "Error: Operator not recognized." << endl;
+        cout << "The result of " << a << " " << oper << " " << b << " is " << result << endl;
     }
 }
 
