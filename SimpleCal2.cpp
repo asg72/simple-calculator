@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class SimpleCal
+class SimpleCalculator
 {
     int value1, value2;
 
@@ -40,7 +40,7 @@ public:
 // Menu function to manage input and output
 void menu()
 {
-    SimpleCal cal;
+    SimpleCalculator cal;
     string oper;
     int a, b;
     cout << "Enter value of a and b: " << endl;
